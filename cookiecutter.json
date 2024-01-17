@@ -4,6 +4,8 @@
   "author_name": "Your name (or your organization/company/team)",
   "description": "A short description of the project.",
   "python_version": "3.11",
+  "use_wandb": "y",
+  "use_docker": "y",
   "open_source_license": [
     "No license file",
     "MIT",
