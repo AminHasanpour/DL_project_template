@@ -16,6 +16,12 @@ PYTHON_INTERPRETER = python
 # COMMANDS                                                                      #
 #################################################################################
 
+## Fully set up the project
+setup_project: create_environment requirements dev_requirements test_requirements
+	git init
+	pre-commit install
+	echo "Run 'wandb login' if you want to use wandb in 'online' mode"
+
 ## Set up python interpreter environment
 create_environment:
 	conda create --name $(PROJECT_NAME) python=$(PYTHON_VERSION) --no-default-packages -y
@@ -30,20 +36,34 @@ requirements:
 dev_requirements: requirements
 	$(PYTHON_INTERPRETER) -m pip install .["dev"]
 
+## Install Test Python Dependencies
+test_requirements: requirements
+	$(PYTHON_INTERPRETER) -m pip install .["test"]
+
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 
+## Remove python interpreter environment
+remove_environment:
+	conda remove --name $(PROJECT_NAME) --all -y
 
 #################################################################################
 # PROJECT RULES                                                                 #
 #################################################################################
 
-## Process raw data into processed data
-data:
-	python $(PROJECT_NAME)/data/make_dataset.py
+# put project specific rules here
+{% if cookiecutter.with_docker == "y" %}
+#################################################################################
+# Docker Rules                                                                  #
+#################################################################################
 
+## Build the container
+build_container:
+	docker-compose build
+
+{% endif %}{% if cookiecutter.with_docs == "y" %}
 #################################################################################
 # Documentation RULES                                                           #
 #################################################################################
@@ -55,7 +75,7 @@ build_documentation: dev_requirements
 ## Serve documentation
 serve_documentation: dev_requirements
 	mkdocs serve --config-file docs/mkdocs.yaml
-
+{% endif %}
 #################################################################################
 # Self Documenting Commands                                                     #
 #################################################################################

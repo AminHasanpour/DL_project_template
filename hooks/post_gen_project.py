@@ -3,8 +3,8 @@ import shutil
 from keyword import iskeyword
 
 project_name = '{{cookiecutter.project_name}}'
-use_wandb = True if '{{cookiecutter.use_wandb}}'.lower() == 'y' else False
-use_docker = True if '{{cookiecutter.use_docker}}'.lower() == 'y' else False
+with_docker = True if '{{cookiecutter.with_docker}}'.lower() == 'y' else False
+with_docs = True if '{{cookiecutter.with_docs}}'.lower() == 'y' else False
 
 if not project_name.isidentifier() or not project_name.islower():
     raise ValueError(
@@ -19,8 +19,9 @@ if not project_name.isidentifier() or not project_name.islower():
 if iskeyword(project_name):
     raise ValueError('Project name must not be a build-in keyword, as it will cause syntax errors.')
 
-if not use_docker:
-    try:
-        shutil.rmtree(os.path.join(project_name, "docker_files"))
-    except OSError as e:
-        print("Error: %s - %s." % (e.filename, e.strerror))
+if not with_docker:
+    shutil.rmtree("dockerfiles")
+    os.remove("docker-compose.yaml")
+
+if not with_docs:
+    shutil.rmtree("docs")

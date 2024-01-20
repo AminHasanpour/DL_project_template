@@ -1,26 +1,14 @@
-import torch
+import tensorflow as tf
 
-class MyNeuralNet(torch.nn.Module):
-    """ Basic neural network class. 
-    
-    Args:
-        in_features: number of input features
-        out_features: number of output features
-    
+def get_model() -> tf.keras.Model:
     """
-    def __init__(self, in_features: int, out_features: int) -> None:
-        self.l1 = torch.nn.Linear(in_features, 500)
-        self.l2 = torch.nn.Linear(500, out_features)
-        self.r = torch.nn.ReLU()
-    
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """Forward pass of the model.
-        
-        Args:
-            x: input tensor expected to be of shape [N,in_features]
+    Create model and return.
 
-        Returns:
-            Output tensor with shape [N,out_features]
+    Returns:
+        tf.keras.Model: model
+    """
+    pass
 
-        """
-        return self.l2(self.r(self.l1(x)))
+if __name__ == '__main__':
+    model = get_model()
+    model.summary()
