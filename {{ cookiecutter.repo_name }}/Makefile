@@ -1,7 +1,7 @@
-## This defines all targets as phony targets, i.e. targets that are always out of date
-## This is done to ensure that the commands are always executed, even if a file with the same name exists
-## See https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
-## Remove this if you want to use this Makefile for real targets
+# This defines all targets as phony targets, i.e. targets that are always out of date
+# This is done to ensure that the commands are always executed, even if a file with the same name exists
+# See https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
+# Remove this if you want to use this Makefile for real targets
 .PHONY: *
 
 #################################################################################
@@ -18,7 +18,7 @@ PYTHON_INTERPRETER = python
 
 ## Fully set up the project
 setup_project:
-	@echo Creating and setting up the environment...
+	@echo "Creating and setting up the environment..."
 	@conda create --name $(PROJECT_NAME) python=$(PYTHON_VERSION) --no-default-packages -y && \
 		conda activate $(PROJECT_NAME) && \
 		python -m pip install -U pip setuptools wheel && \
@@ -28,7 +28,7 @@ setup_project:
 		python -m pip install .["test"] && \
 		git init && \
 		pre-commit install
-	@echo Setup completed.
+	@echo "Setup completed."
 
 ## Set up python interpreter environment
 create_environment:
@@ -105,8 +105,10 @@ serve_documentation: dev_requirements
 # 	* print line
 # Separate expressions are necessary because labels cannot be delimited by
 # semicolon; see <http://stackoverflow.com/a/11799865/1968>
-.PHONY: help
 help:
+ifeq ($(OS),Windows_NT)
+	@echo "The help command is not supported on Windows. Please use a Unix-like environment."
+else
 	@echo "$$(tput bold)Available commands:$$(tput sgr0)"
 	@sed -n -e "/^## / { \
 		h; \
@@ -142,3 +144,4 @@ help:
 		printf "\n"; \
 	}' \
 	| more $(shell test $(shell uname) = Darwin && echo '--no-init --raw-control-chars')
+endif
