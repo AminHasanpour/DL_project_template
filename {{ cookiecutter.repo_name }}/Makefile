@@ -17,10 +17,18 @@ PYTHON_INTERPRETER = python
 #################################################################################
 
 ## Fully set up the project
-setup_project: create_environment requirements dev_requirements test_requirements
-	git init
-	pre-commit install
-	echo "Run 'wandb login' if you want to use wandb in 'online' mode"
+setup_project:
+	@echo Creating and setting up the environment...
+	@conda create --name $(PROJECT_NAME) python=$(PYTHON_VERSION) --no-default-packages -y && \
+		conda activate $(PROJECT_NAME) && \
+		python -m pip install -U pip setuptools wheel && \
+		python -m pip install -r requirements.txt && \
+		python -m pip install -e . && \
+		python -m pip install .["dev"] && \
+		python -m pip install .["test"] && \
+		git init && \
+		pre-commit install
+	@echo Setup completed.
 
 ## Set up python interpreter environment
 create_environment:
