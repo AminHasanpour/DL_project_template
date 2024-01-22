@@ -2,7 +2,7 @@
 
 ---
 
-Forked from [MLOps course template](https://github.com/SkafteNicki/dtu_mlops). This template has been updated 
+Taken from [MLOps template](https://github.com/SkafteNicki/mlops_template). This template has been updated 
 to better fit deep learning projects and contain more features out of the box.
 
 ## Requirements to use the template:
