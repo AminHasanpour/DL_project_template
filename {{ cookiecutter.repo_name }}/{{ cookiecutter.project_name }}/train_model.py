@@ -20,11 +20,11 @@ from {{ cookiecutter.project_name }}.models.model import get_model
 def main(cfg):
     # initializing
     time_tag = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    
+
     exp_commit_message, exp_commit_hash = commit_experiment()
-    
+
     logger = get_logger(__name__)
-    
+
     wandb_name = datetime.datetime.strptime(time_tag, "%Y-%m-%d_%H-%M-%S").strftime("%Y-%m-%d %H:%M:%S")
     # USER: change this line respecting your application
     wandb.init(entity=..., project="{{ cookiecutter.project_name }}", name=wandb_name)
@@ -51,7 +51,7 @@ def main(cfg):
 
     opt = tf.keras.optimizers.Adam(learning_rate=cfg.learning_rate)
     model.compile(optimizer=opt, loss=..., metrics=...)     # USER: change this line respecting your application
-    
+
     best_model_path = "models/{time}/model_best.keras".format(time=time_tag)
     best_model_callback = tf.keras.callbacks.ModelCheckpoint(best_model_path, save_best_only=True, verbose=0)
     wandb_callback = WandbCallback(save_model=False, )      # USER: change this line respecting your application

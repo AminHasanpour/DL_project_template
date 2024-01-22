@@ -13,10 +13,10 @@ def get_logger(name, level=DEFAULT_LOG_LEVEL, log_path=None, use_rich=False):
         level (str): Level of the logger. One of "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL".
         log_path (str): Path to the log file. If None, no log file is created.
         use_rich (bool): Whether to use rich to beautify the log.
-    
+
     Returns:
         logging.Logger: Logger.
-    
+
     Examples:
         >>> logger = get_logger(__name__, level="DEBUG", log_path="logs/latest.log", use_rich=False)
         >>> logger.debug("Used for debugging your code.")
@@ -59,7 +59,7 @@ def get_logger(name, level=DEFAULT_LOG_LEVEL, log_path=None, use_rich=False):
             "stream": "ext://sys.stdout"
         }
         config["root"]["handlers"].append("console")
-    
+
     if log_path:
         os.makedirs(os.path.dirname(log_path), exist_ok=True)
         config["handlers"]["file"] = {
@@ -73,5 +73,5 @@ def get_logger(name, level=DEFAULT_LOG_LEVEL, log_path=None, use_rich=False):
 
     logging.config.dictConfig(config)
     logger = logging.getLogger(name)
-    
+
     return logger

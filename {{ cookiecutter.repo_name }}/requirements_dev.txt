@@ -1,7 +1,7 @@
 # pre-commit
 pre-commit >= 3.5.0
-
-{% if cookiecutter.with_docs == 'y' %}# docs
+{% if cookiecutter.with_docs == 'y' %}
+# docs
 mkdocs <= 1.5.3
 mkdocs-material <= 9.4.6
 mkdocstrings <= 0.23.0

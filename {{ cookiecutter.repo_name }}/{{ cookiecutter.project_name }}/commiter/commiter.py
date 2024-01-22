@@ -12,7 +12,7 @@ def _run_git_command(*args):
 
 
 def commit_experiment():
-    """Tries to find a commit with the same repository state, if unsuccessful, creates a new branch 
+    """Tries to find a commit with the same repository state, if unsuccessful, creates a new branch
     and commits the current state of the repository there.
 
     Returns:
@@ -31,7 +31,7 @@ def commit_experiment():
     # BUG: When adding a new file or renaming a file (which might be considered as deleting the old file and creating a new one),
     # the diff command will return a non-empty string, even if the file is the same. This will cause the code to create a new branch
     # and commit the changes there, even though the changes are not real
-    
+
     time_tag = int(time.time()*1000)
     stash_name = "stash_{}".format(time_tag)
     new_branch = "checkpoint/branch_{}".format(time_tag)
@@ -42,7 +42,7 @@ def commit_experiment():
         exp_commit_message = _run_git_command('log', '-1', '--pretty="%s"')
         exp_commit_hash = _run_git_command('log', '-1', '--pretty="%H"')
         return exp_commit_message, exp_commit_hash
-    
+
     branches = _run_git_command('branch', '--contains', 'HEAD').split('\n')
     branches = [x for x in branches if '*' not in x]
     branches = [x.strip() for x in branches]
@@ -52,7 +52,7 @@ def commit_experiment():
             exp_commit_message = _run_git_command('log', '-1', '--pretty="%s"', branch)
             exp_commit_hash = _run_git_command('log', '-1', '--pretty="%H"', branch)
             return exp_commit_message, exp_commit_hash
-    
+
     # 3.1. Stash all changes
     _run_git_command('stash', 'push', '--include-untracked', '-m', stash_name)
 
@@ -72,7 +72,7 @@ def commit_experiment():
     # 3.4. Go back to the initial branch and pop the stash there
     _run_git_command('checkout', initial_branch)
     _run_git_command('stash', 'pop')
-    
+
     return exp_commit_message, exp_commit_hash
 
 if __name__ == '__main__':

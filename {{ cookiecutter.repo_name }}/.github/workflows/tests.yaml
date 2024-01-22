@@ -34,7 +34,7 @@ jobs:
         run: |
           coverage report -m
           coverage html
-      
+
       - name: Upload coverage report
         if: always()
         uses: actions/upload-artifact@v2
