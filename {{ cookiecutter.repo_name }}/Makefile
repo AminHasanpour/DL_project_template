@@ -27,6 +27,8 @@ setup_project:
 		python -m pip install .["dev"] && \
 		python -m pip install .["test"] && \
 		git init && \
+		git add . && \
+		git commit -m "Init cookiecutter project" && \
 		pre-commit install
 	@echo "Setup completed."
 
