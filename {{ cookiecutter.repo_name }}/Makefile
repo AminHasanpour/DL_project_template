@@ -28,12 +28,17 @@ setup_project:
 		python -m pip install -r requirements.txt && \
 		python -m pip install -e . && \
 		python -m pip install .["dev"] && \
-		python -m pip install .["test"] && \
-		git init && \
+		python -m pip install .["test"]
+	@echo "Recommended: Run 'make setup_git' to set up git."
+	@echo "Setup completed. Please run 'conda activate $(PROJECT_NAME)' to activate the environment."
+
+setup_git:
+	@echo "Setting up git..."
+	@git init && \
 		git add . && \
 		git commit -m "Init cookiecutter project" && \
 		pre-commit install
-	@echo "Setup completed."
+	@echo "Git setup completed."
 
 ## Set up python interpreter environment
 create_environment:
