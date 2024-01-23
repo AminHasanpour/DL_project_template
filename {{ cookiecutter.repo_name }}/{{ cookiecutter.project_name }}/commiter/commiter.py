@@ -65,7 +65,7 @@ def commit_experiment():
 
     _run_git_command('stash', 'apply', 'stash^{/'+stash_name+'}')
     _run_git_command('add', '.')
-    _run_git_command('commit', '-m', commit_message)
+    _run_git_command('commit', '-m', commit_message, '--no-verify')
     exp_commit_message = _run_git_command('log', '-1', '--pretty="%s"')
     exp_commit_hash = _run_git_command('log', '-1', '--pretty="%H"')
 
