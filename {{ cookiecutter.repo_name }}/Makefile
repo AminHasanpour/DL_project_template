@@ -9,6 +9,7 @@
 #################################################################################
 
 PROJECT_NAME = {{ cookiecutter.project_name }}
+PROJECT_ROOT = $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 PYTHON_VERSION = {{ cookiecutter.python_version }}
 PYTHON_INTERPRETER = python
 
@@ -21,6 +22,8 @@ setup_project:
 	@echo "Creating and setting up the environment..."
 	@conda create --name $(PROJECT_NAME) python=$(PYTHON_VERSION) --no-default-packages -y && \
 		conda activate $(PROJECT_NAME) && \
+		conda env config vars set PROJECT_NAME="$(PROJECT_NAME)" -n $(PROJECT_NAME) && \
+		conda env config vars set PROJECT_ROOT="$(PROJECT_ROOT)" -n $(PROJECT_NAME) && \
 		python -m pip install -U pip setuptools wheel && \
 		python -m pip install -r requirements.txt && \
 		python -m pip install -e . && \

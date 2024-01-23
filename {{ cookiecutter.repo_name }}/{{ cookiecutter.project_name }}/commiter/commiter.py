@@ -16,7 +16,7 @@ def commit_experiment():
     and commits the current state of the repository there.
 
     Returns:
-        tuple: A tuple containing the experiment commit message and the its hash.
+        tuple: A tuple containing the experiment commit message and its hash.
     """
 
     # Logic of the code:
