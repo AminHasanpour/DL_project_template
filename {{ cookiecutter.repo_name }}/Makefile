@@ -60,8 +60,14 @@ test_requirements: requirements
 
 ## Delete all compiled Python files
 clean:
-	find . -type f -name "*.py[co]" -delete
-	find . -type d -name "__pycache__" -delete
+ifeq ($(OS),Windows_NT)
+	@for /r %%i in (*.pyc) do if exist "%%i" del /q "%%i"
+	@for /r %%i in (*.pyo) do if exist "%%i" del /q "%%i"
+	@for /d /r %%d in (__pycache__) do if exist "%%d" rmdir /s /q "%%d"
+else
+	@find . -type f -name "*.py[co]" -delete
+	@find . -type d -name "__pycache__" -delete
+endif
 
 ## Remove python interpreter environment
 remove_environment:
