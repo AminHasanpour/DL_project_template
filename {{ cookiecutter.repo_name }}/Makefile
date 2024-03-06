@@ -10,8 +10,11 @@
 
 PROJECT_NAME = {{ cookiecutter.project_name }}
 PROJECT_ROOT = $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+
 PYTHON_VERSION = {{ cookiecutter.python_version }}
 PYTHON_INTERPRETER = python
+
+TF_LOG_LEVEL = 2
 
 #################################################################################
 # COMMANDS                                                                      #
@@ -24,6 +27,7 @@ setup_project:
 		conda activate $(PROJECT_NAME) && \
 		conda env config vars set PROJECT_NAME="$(PROJECT_NAME)" -n $(PROJECT_NAME) && \
 		conda env config vars set PROJECT_ROOT="$(PROJECT_ROOT)" -n $(PROJECT_NAME) && \
+		conda env config vars set TF_CPP_MIN_LOG_LEVEL="$(TF_LOG_LEVEL)" -n $(PROJECT_NAME) && \
 		python -m pip install -U pip setuptools wheel && \
 		python -m pip install -r requirements.txt && \
 		python -m pip install -e . && \
