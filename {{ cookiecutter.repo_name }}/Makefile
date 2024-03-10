@@ -38,7 +38,8 @@ setup_project:
 
 setup_git:
 	@echo "Setting up git..."
-	@git init && \
+	@conda activate $(PROJECT_NAME) && \
+		git init && \
 		git add . && \
 		git commit -m "Init cookiecutter project" && \
 		pre-commit install
