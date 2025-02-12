@@ -29,7 +29,7 @@ jobs:
 
       - name: Execute template
         run: |
-          cookiecutter . --no-input
+          cookiecutter . --no-input with_docker="y" with_docs="y"
 
       - name: Install conda
         uses: conda-incubator/setup-miniconda@v3
