@@ -7,7 +7,7 @@ to better fit deep learning projects and contain more features out of the box.
 
 ## Requirements to use the template:
 
-* Python 3.11
+* Python 3.12
 * Cookiecutter v2.4.0
 
 ## Start a new project
