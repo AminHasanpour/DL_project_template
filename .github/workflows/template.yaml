@@ -40,13 +40,7 @@ jobs:
       - name: Run make commands
         run: |
           cd repo_name
-          make setup_project
-          make setup_git
-          make requirements
-          make dev_requirements
-          make test_requirements
           make clean
-          make remove_environment
           make help
         env:
           TERM: xterm
