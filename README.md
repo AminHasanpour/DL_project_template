@@ -15,7 +15,7 @@ to better fit deep learning projects and contain more features out of the box.
 On your local machine run
 
 ```bash
-cookiecutter https://github.com/Black3rror/mlops_template
+cookiecutter https://github.com/AminHasanpour/mlops_template
 ```
 
 and input starting values for the project. Note that when asked for the project name, you should input
