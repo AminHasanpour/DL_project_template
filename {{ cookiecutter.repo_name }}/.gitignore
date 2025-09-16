@@ -4,6 +4,9 @@
 # docs
 docs/site/
 
+# agents
+agents/
+
 # test cache
 manual_test/
 
