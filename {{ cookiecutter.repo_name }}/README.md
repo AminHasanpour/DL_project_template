@@ -48,6 +48,6 @@ The directory structure of the project looks like this:
 └── LICENSE              <- Open-source license if one is chosen
 ```
 
-Created using [DL_project_template](https://github.com/Black3rror/DL_project_template),
+Created using [mlops_template](https://github.com/Black3rror/mlops_template),
 a [cookiecutter template](https://github.com/cookiecutter/cookiecutter) for
 starting a Deep Learning Project.
