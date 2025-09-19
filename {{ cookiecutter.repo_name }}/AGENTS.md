@@ -17,19 +17,9 @@ This file defines how agents (AI or human) should work on this project.
 
 ## 📁 `agents/` Folder
 
-This is your **workspace for planning and coordination**.
+This is your **workspace**. Feel free to use it in any way, for example to **externalize your thoughts, plans, and decisions**.
 
-- Use this folder to **externalize your thoughts, plans, and decisions** instead of keeping them “in your head”. This way you can instruct yourself and others after you.
-- If this folder is not empty, it likely contains work from previous agents — read it before continuing.
-
-**Folder structure recommendations:**
-- `agents/README.md` — explains the structure of this folder and how to use it.
-- `agents/TODO.md` — a running checklist of tasks; mark tasks as `- [ ]` (to do), `- [~]` (in progress), and `- [x]` (done).
-- Optional subfolders (`planning/`, `rules/`, `research/`, etc.) to keep content organized.
-
-**Housekeeping:**
-- Keep this folder tidy and updated; archive or remove outdated plans.
-- Prefer small, focused documents rather than long, messy files.
+Follow the coding standards I've set in `agents/coding_standards.md`.
 
 ---
 
